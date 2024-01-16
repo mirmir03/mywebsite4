@@ -1,0 +1,241 @@
+/* Style for product selection dropdown */
+.product-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  margin-top: 10px;
+}
+
+.product-selector select {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#myImg {
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  background-color: black;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #aca885;
+}
+
+/* Style the header */
+.header {
+  background-color: #626c66;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Create three unequal columns that float next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 50%;
+  text-align: center; /* Center text in the side column */
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+  border-left: 1px solid #ccc;
+  /* Add a border to the left side of column-middle */
+  padding-left: 10px;
+  /* Add padding to separate content from the border */
+  padding-top: 10px;
+  /* Add padding to the top of column-middle */
+  padding-bottom: 10px;
+  /* Add padding to the bottom of column-middle */
+  text-align: center; /* Center text in the middle column */
+}
+
+.product-name {
+  margin-top: 10px;
+  font-size: 20px;
+  text-indent: 90px;
+}
+
+.product-info {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  background-color:white;
+}
+
+/* Add border and margin to the feedback container */
+.feedback-container {
+border: 1px solid #ccc;
+padding: 10px;
+margin-bottom: 20px; /* Increase margin between feedback containers */
+background-color: white;
+}
+
+.leave-feedback-btn {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.rating {
+  font-size: 16px;
+  color: #f7c51e;
+  cursor: pointer;
+}
+
+.rating:hover,
+.rating.checked {
+  color: #f7c51e;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side,
+  .column.middle {
+    width: 100%;
+  }
+}
+
+/* Style the footer */
+.footer {
+  background-color: #626c66;
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;
+  /* Push the footer to the bottom */
+}
+
+.collapsible {
+  background-color: #f1f1f1;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.content {
+  display: none;
+  padding: 10px;
+}
+
+.collapsible:hover {
+  background-color: #ddd;
+}
+
+.collapsible:after {
+  content: '\02795';
+  /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.collapsible.active:after {
+  content: "\2796";
+  /* Unicode character for "minus" sign (-) */
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>CSS Website Layout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="CSSintro.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <h1 class="title"><a href="homepage.html" style="text-decoration: none; color: white;">Essential</a></h1>
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <br><br><br>
+      <!-- Bootstrap Carousel -->
+      <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        </div>
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="la_high_quality.jpg">
+                  <img src="la_high_quality.jpg" alt="Los Angeles" class="d-block" style="width:100%">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="chicago_high_quality.jpg">
+                  <img src="chicago_high_quality.jpg" alt="Chicago" class="d-block" style="width:100%">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="responsive">
+              <div class="gallery">
+                <a target="_blank" href="ny_high_quality.jpg"></a>
+                <img src="ny_high_quality.jpg" alt="New York" class="d-block" style="width:100%">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+      <!-- End Bootstrap Carousel -->
+    </div>
+
+    <div class="col-lg-6 column middle">
+      <h1>Aromatherapy Essential oils</h1>
+      <br>
+      <h5>What is Aromatherapy essential oils?</h3>
+        <p>
+          Aromatherapy involves the use of essential oils to maintain health and improve well-being.
+        </p>
+        <!-- Button trigger for collapsible content -->
+
+          <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">Learn More</button>
+
+
+        <!-- Collapsible content -->
+        <div class="collapse" id="collapseExample">
+          <p>
+            It is a remarkably effective, natural and holistic way of caring for humans and animals alike, which relies
+            on the relationship between the active principles contained in essential oils and the therapeutic properties
+            deriving therefrom.
+            Essential oils are 100%-natural substances and they are highly concentrated in active principles. They are
+            obtained by steam distillation of the essence-secreting organs contained in aromatic plants.
+            Essential oils, quintessences of nature, have countless properties and are for example traditionally renown
+            for their antibacterial, antifungal, antiparasitic, disinfectant and insect-repellent properties.
+            Essential oils are also widely used for their soothing, calming, muscle-relaxing, draining, toning and
+            stimulating properties.
+            Essentials oils also have an effect on the psyche through olfaction.
+            An essential oil is said to be “chemotyped” when its exact biochemical composition has been determined
+            through scientific analysis.
+            This concept of chemotype (or biochemical type) is of paramount importance because it allows not only to
+            determine the active principles contained in an essential oil, and therefore its properties, but also to
+            control its quality (100% natural, 100% pure and 100% integral essential oil). To achieve the best quality
+            and optimal effectiveness, our products are made exclusively with chemotyped essential oils.
+          </p>
+        </div>
+        <p><a href="https://www.sciencedirect.com/science/article/pii/S2221169115001033" target="_blank">Gain More
+            Informatio Here.com</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+        <p>2023 &copy; Designed By ELVINSON, FAHEEM, AMIRAH</p>
+    </div>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FPX</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script src="/utils.js" defer></script>
+    <script src="/Fpx.js" defer></script>
+
+    <script defer>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const publishableKey = 'pk_live_51OY67iLRe0DCzl0y4VCLDQLouuYQzM9FECRAbNkyhHMKduJviLg6BpKwEwY9B1GXtv4TBiQFxCug7J3RzCWpiqtT00JXhPVeMP';
+
+        const stripe = Stripe(publishableKey, {
+          apiVersion: '2020-08-27',
+        });
+
+        const elements = stripe.elements();
+        const fpxBank = elements.create('fpxBank', {
+          accountHolderType: 'individual',
+        });
+        fpxBank.mount('#fpx-bank-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const {error: backendError, clientSecret} = await fetch(
+            '/create-payment-intent',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                currency: 'myr',
+                paymentMethodType: 'fpx',
+              }),
+            }
+          ).then((r) => r.json());
+
+          if (backendError) {
+            addMessage(backendError.message);
+            return;
+          }
+
+          // Assume you have a function addMessage() defined in utils.js
+          addMessage(`Client secret returned.`);
+
+          const {error: stripeError, paymentIntent} = await stripe.confirmFpxPayment(
+            clientSecret,
+            {
+              payment_method: {
+                fpx: fpxBank,
+              },
+              return_url: `homepage.html`,
+            }
+          );
+
+          if (stripeError) {
+            addMessage(stripeError.message);
+          }
+
+          addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <a href="homepage.html">Go back to homepage</a>
+
+      <h1>FPX</h1>
+
+      <form id="payment-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" value=""/>
+        <label for="fpx-bank-element">
+          FPX Bank
+        </label>
+        <div id="fpx-bank-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <button class="button-like-link" onclick="window.location.href='Thank you.html'">Pay</button>
+
+        <!-- Used to display form errors. -->
+        <div id="error-message" role="alert"></div>
+      </form>
+      <div id="messages" role="alert"></div>
+    </main>
+  </body>
+</html>

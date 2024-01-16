@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Essential</title>
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (email === "" || !isValidEmail(email)) {
+                displayMessage("Please enter a valid email address.");
+                return false;
+            }
+
+            if (password === "") {
+                displayMessage("Please enter your password.");
+                return false;
+            }
+
+            displayMessage("Login successful!");
+
+            return false;
+        }
+
+        function isValidEmail(email) {
+            // A simple email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function displayMessage(message) {
+            var messageElement = document.getElementById("message");
+            messageElement.innerHTML = message;
+            messageElement.style.display = "block";
+        }
+    </script>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; display: flex; min-height: 100vh; flex-direction: column; background-image: url('bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+
+    <header>
+        <div class="header-content">
+            <h1 class="title"><a href="homepage.html" style="text-decoration: none; color: white;">Essential</a></h1>
+        </div>
+    </header>
+
+    <div class="main-contentl">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form onsubmit="return validateForm()">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your e-mail" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <input type="submit" value="Login">
+            </form>
+
+            <p style="text-align: right;"><a href="register.html">Create New Account</a></p>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <p>2023 &copy; Designed By ELVINSON, FAHEEM, AMIRAH</p>
+        </div>
+    </footer>
+
+</body>
+</html>

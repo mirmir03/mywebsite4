@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: beige;
+        }
+
+        header {
+            background-color: #626C66;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+        }
+
+    .brand-name {
+      color: white;
+    }
+
+    .chatbox {
+      width: 100%;
+      border: 1px solid #000;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #626C66;
+      height: calc(100vh - 120px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chatbox-header {
+      background-color: #000;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .chatbox-body {
+      flex-grow: 1;
+      overflow-y: scroll;
+      padding: 10px;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .user-message {
+      background-color: #000;
+      color: white;
+      border-radius: 5px;
+      padding: 8px;
+      margin-left: 50px;
+    }
+
+    .agent-message {
+      background-color: #ddd;
+      border-radius: 5px;
+      padding: 8px;
+      margin-right: 50px;
+    }
+
+    .chatbox-footer {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+    }
+
+    .input-message {
+      flex-grow: 1; /* Allow input to grow and fill remaining space */
+      width: 0; /* Set width to 0 to allow it to grow */
+      padding: 8px;
+      border: 1px solid #000;
+      border-radius: 5px;
+    }
+
+    .send-button {
+      background-color: #000;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    main {
+  flex-grow: 1; /* Allow main to grow and fill remaining space */
+  padding: 50px; /* Add padding to create space around the chatbox */
+}
+
+footer {
+  margin-top: 30px; /* Add space at the top of the footer */
+  background-color: #626C66;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="homepage.html">
+      <h1><span class="brand-name">Essential</span></h1>
+    </a>
+  </header>
+  <main>
+    <div class="chatbox">
+      <div class="chatbox-header">Customer Service</div>
+      <div class="chatbox-body" id="chatboxBody">
+        <div class="message agent-message">Welcome! How can we assist you today?</div>
+      </div>
+      <div class="chatbox-footer">
+        <input type="text" class="input-message" id="userMessage" placeholder="Type your message...">
+        <button class="send-button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script>
+      function sendMessage() {
+        var userMessage = document.getElementById("userMessage").value;
+        if (userMessage.trim() === "") return;
+
+        var chatboxBody = document.getElementById("chatboxBody");
+
+        var userMessageDiv = document.createElement("div");
+        userMessageDiv.className = "message user-message";
+        userMessageDiv.textContent = userMessage;
+        chatboxBody.appendChild(userMessageDiv);
+
+        var agentResponseDiv = document.createElement("div");
+        agentResponseDiv.className = "message agent-message";
+        agentResponseDiv.textContent = "This is just only for assignment purposes only, the chat is offline - Group 9";
+        chatboxBody.appendChild(agentResponseDiv);
+
+        document.getElementById("userMessage").value = "";
+
+        chatboxBody.scrollTop = chatboxBody.scrollHeight;
+      }
+    </script>
+  </main>
+  <footer>
+    2023 &copy; Designed By ELVINSON, FAHEEM, AMIRAH
+  </footer>
+</body>
+</html>

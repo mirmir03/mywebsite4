@@ -1,0 +1,186 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #626C66;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+}
+
+.login-btn {
+    text-decoration: none;
+    color: white;
+    background-color: #ACA885;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #626C66;
+    color: black;
+    text-align: center;
+    padding: 2px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    height: 80vh;
+    float: left;
+    width: 15%;
+    background-color: #E1CA96;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    border-radius: 50%;
+    background-color: beige;
+}
+
+nav {
+    margin-top: 20px;
+    flex-grow: 1; 
+}
+
+nav h2 {
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+nav a:hover {
+    border-bottom: 2px solid black;
+}
+
+/* Main Container styles */
+.main-container {
+    float: right;
+    width: 78.418%;
+    padding: 20px;
+    background-color: beige;
+}
+
+/* Search Bar styles */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 8px 15px;
+    background-color: #ACA885;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Promotion Container styles */
+.promotion-container {
+    background-color: #ccc;
+    padding: 20px;
+    padding-top: 10px;
+}
+
+.promotion-images {
+    display: flex;
+    justify-content: space-between;
+}
+
+.promotion-images img {
+    width: 20%;
+    border-radius: 8px;
+}
+
+.main-contentl {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-container {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
+
+.login-container h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #ACA885;
+    color: white;
+    cursor: pointer;
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    color: green; /* Adjust the color based on your preference */
+    font-weight: bold;
+}

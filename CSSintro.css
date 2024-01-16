@@ -1,0 +1,93 @@
+
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+      background-color: #aca885;
+      color: black;
+      
+    }
+
+    h1 {
+        color: black;
+    }
+      
+    h5 {
+        color: black;
+    }
+    /* Style the header */
+    header {
+      background-color: #626C66;
+      color: white;
+      padding: 10px;
+      text-align: center;
+  }
+  
+  .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .title {
+      margin: 0;
+  }
+
+    /* Create three unequal columns that float next to each other */
+    .column {
+      padding: 10px;
+      flex: 1;
+    }
+
+    /* Left column */
+    .column.side {
+      width: 40%;
+      float: left;
+    }
+
+    /* Middle column */
+    .column.middle {
+      width: 55%;
+      margin-top: auto; /* Push the column to the bottom */
+    }
+
+    /* Clear floats after the columns */
+    .row::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 580px) {
+      .column.side,
+      .column.middle {
+        width: 100%;
+        float: none;
+      }
+    }
+
+    /* Style the footer */
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #626C66;
+      color: black;
+      text-align: center;
+      padding: 2px;
+  }
+
+    /* Adjust the size of the carousel */
+    #demo {
+      width: 100%;
+      float: left;
+      padding-left: 20px; /* Add padding to the left side */
+    }
+
+    /* Set carousel inner and item height to 100% */
+    .carousel-inner, .carousel-item {
+      height: 95%;
+    }

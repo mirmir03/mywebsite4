@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>CSS Website Layout - Essential Oils</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .product-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .product-selector select {
+      cursor: pointer;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #myImg {
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #myImg:hover {
+      opacity: 0.7;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+      margin-top: 20px;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      background-color: black;
+    }
+
+    /* Caption of Modal Image */
+    #caption {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      text-align: center;
+      color: #ccc;
+      padding: 10px 0;
+      height: 150px;
+    }
+
+    /* Add Animation */
+    .modal-content,
+    #caption {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+      from {
+        transform: scale(0.1);
+      }
+
+      to {
+        transform: scale(1);
+      }
+    }
+
+    /* The Close Button */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f7c51e;
+    }
+
+    /* Style the header */
+    header {
+      background-color: #626C66;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      margin: 0;
+    }
+
+    /* Create three unequal columns that float next to each other */
+    .column {
+      float: left;
+      padding: 10px;
+    }
+
+    /* Left and right column */
+    .column.side {
+      width: 50%;
+      text-align: center;
+      /* Center text in the side column */
+    }
+
+    /* Middle column */
+    .column.middle {
+      width: 50%;
+      border-left: 1px solid #ccc;
+      /* Add a border to the left side of column-middle */
+      padding-left: 10px;
+      /* Add padding to separate content from the border */
+      padding-top: 10px;
+      /* Add padding to the top of column-middle */
+      padding-bottom: 10px;
+      /* Add padding to the bottom of column-middle */
+      text-align: center;
+      /* Center text in the middle column */
+    }
+
+    .product-name {
+      margin-top: 10px;
+      font-size: 20px;
+      text-indent: 90px;
+    }
+
+    .product-info {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #ddd;
+    }
+
+    /* Add border and margin to the feedback container */
+    .feedback-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      /* Increase margin between feedback containers */
+      background-color: #ddd;
+    }
+
+    .leave-feedback-btn {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .rating {
+      font-size: 16px;
+      color: #f7c51e;
+      cursor: pointer;
+    }
+
+    .rating:hover,
+    .rating.checked {
+      color: #f7c51e;
+    }
+
+    /* Clear floats after the columns */
+    .row::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+
+      .column.side,
+      .column.middle {
+        width: 100%;
+      }
+    }
+
+    /* Style the footer */
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #626C66;
+      color: black;
+      text-align: center;
+      padding: 2px;
+    }
+
+    .collapsible {
+      background-color: #f1f1f1;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .content {
+      display: none;
+      padding: 10px;
+    }
+
+    .collapsible:hover {
+      background-color: #ddd;
+    }
+
+    .collapsible:after {
+      content: '\02795';
+      /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .collapsible.active:after {
+      content: "\2796";
+    }
+  </style>
+  <link rel="stylesheet" href="CSSintro.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <h1 class="title"><a href="homepage.html" style="text-decoration: none; color: white;">Essential</a></h1>
+    </div>
+  </header>
+  <br><br>
+
+  <div class="row">
+    <!-- Australian Ericifolia Product -->
+    <div class="column side">
+      <img id="myImg" src="Australian Ericifolia.jpg" width="300" height="200">
+      <div class="product-selector">
+        <select id="productDropdown" onchange="changeProduct()">
+          <option value="australianEricifolia">Australian Ericifolia</option>
+          <option value="blueTansy">Blue Tansy</option>
+          <option value="blackPepper">Black Pepper</option>
+          <option value="cedarwood">Cedarwood</option>
+          <option value="bergamot">Bergamot</option>
+          <option value="melaleucaAlternifolia">Melaleuca Alternifolia</option>
+          <!-- Add options for other products as needed -->
+        </select>
+      </div>
+
+      <!-- Add product info sections for each product -->
+      <div id="australianEricifoliaInfo" class="product-info">
+        <p><strong>Details:</strong> Australian Ericifolia essential oil, commonly known as “Lavender Tea Tree,”
+          synergistically combines the benefits of Tea Tree with the soothing nature of Lavender. Found in Tasmania, the
+          vivacious Melaleuca ericifolia plant is steam distilled to create an essential oil that is sweet and woodsy
+          with lingering notes that are freshly floral. How to Use: • Add to V-6™ Vegetable Oil Complex and apply to
+          your chest to revitalize your spirits after a long day. • Combine with Lavender and Rosemary and apply to your
+          scalp for envy-worthy locks of hair. • Dab a few drops directly onto your face for refined and supple-looking
+          skin. • Diffuse with Roman Chamomile for a nighttime routine filled with self-care and rejuvenation.</p>
+        <p><strong>Sales:</strong> 1200 units sold</p>
+      </div>
+      <div id="blueTansyInfo" class="product-info" style="display: none;">
+        <p><strong>Details:</strong>Though blue tansy is harvested from tiny yellow flowers in the chamomile family, the
+          naturally occurring constituent chamazulene turns the powerfully pure Blue Tansy essential oil a beautifully
+          rich blue color during the steam distillation process. Native to Morocco, blue tansy is a rare botanical that
+          is most commonly known for its use in high-end, luxury beauty products. For years Young Living members have
+          enjoyed the benefits of Blue Tansy essential oil in some of our most popular blends, including Valor, Peace &
+          Calming, and JuvaFlex. Now Blue Tansy is available as a single oil for you to diffuse, apply topically, and
+          share!</p>
+        <p><strong>Sales:</strong> 1000 units sold</p>
+      </div>
+      <div id="blackPepperInfo" class="product-info" style="display: none;">
+        <p><strong>Details:</strong> Black Pepper is beautifully fragrant when used aromatically. Provides energizing
+          aroma or pair with other oils such as Peppermint, Wintergreen, or Clove.</p>
+        <p><strong>Sales:</strong> 500 units sold</p>
+      </div>
+      <div id="cedarwoodInfo" class="product-info" style="display: none;">
+        <p><strong>Details:</strong>Cedarwood (Cedrus atlantica) essential oil’s woodsy, warm, balsamic aroma creates a
+          relaxing, calming, and comforting atmosphere when diffused to help support a relaxing nighttime routine. The
+          cleansing and moisturizing properties associated with Cedarwood also make it a great addition to your favorite
+          skin care products. When applied topically, it can help maintain the appearance of healthy, youthful skin. You
+          can also massage Cedarwood oil into your scalp to enhance the appearance of healthy-looking hair.</p>
+        <p><strong>Sales:</strong> 2500 units sold</p>
+      </div>
+      <div id="bergamotInfo" class="product-info" style="display: none;">
+        <p><strong>Details:</strong> Bergamot essential oil’s effervescent citrus aroma makes it a great addition to
+          your morning routine and to liven up your household chores. The yellow-green peel of this orange-shaped fruit
+          is cold pressed to produce pure essential oil. While Bergamot has a primarily tart and uplifting aroma, there
+          are also sweet and relaxing elements, making it a popular addition to perfumes. Bergamot has attracted
+          attention for its skin-cleansing properties, and its elegant scent makes it a popular addition to luxury
+          shampoos, soaps, and cleansers. Bergamot can cause photosensitivity, so avoid applying the oil before spending
+          time in the sun.</p>
+        <p><strong>Sales:</strong> 1200 units sold</p>
+      </div>
+      <div id="melaleucaAlternifoliaInfo" class="product-info" style="display: none;">
+        <p><strong>Details:</strong> ea Tree essential oil, also known as Melaleuca or Melaleuca Alternifolia oil, is
+          one of the most widely used and extensively researched essential oils, making it a must-have for every home.
+          Because the benefits of Tea Tree oil include cleansing properties and a refreshing scent, this versatile oil
+          can be used for everything from home cleaning solutions to skin care. Keep a bottle of Tea Tree in your house
+          to make homemade household cleaners, air fresheners, and linen spritzers. You can also find a world of uses
+          for Tea Tree in your personal care and beauty routine. Incorporate this moisturizing yet cleansing oil into
+          skin care applications and hair treatments for a spa-quality upgrade!</p>
+        <p><strong>Sales:</strong> 900 units sold</p>
+      </div>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+      </div>
+    </div>
+
+    <!-- Column-middle Section -->
+    <div class="column middle">
+      <h1>Feedback</h1>
+
+      <!-- Feedback Section for Australian Ericifolia -->
+      <div id="australianEricifoliaFeedback" class="feedback-container">
+        <div class="rating checked">★★★★☆ (4.0/5.0)</div>
+        <p>User: Sophie</p>
+        <p>I love Australian Ericifolia. It has a wonderful scent!</p>
+      </div>
+
+      <!-- Feedback section for Blue Tansy -->
+      <div id="blueTansyFeedback" class="feedback-container" style="display: none;">
+        <div class="rating checked">★★★★★ (5.0/5.0)</div>
+        <p>User: John Doe</p>
+        <p>I love this product! It's amazing and so useful.</p>
+      </div>
+
+      <div class="feedback-container">
+        <div class="rating checked">★★★☆☆ (3.0/5.0)</div>
+        <p>User: Jane Smith</p>
+        <p>This product is okay, but it could be better. I would recommend it to my friends.</p>
+      </div>
+
+      <div class="feedback-container">
+        <div class="rating checked">★★★★☆ (4.0/5.0)</div>
+        <p>User: Amanda</p>
+        <p>Great product! It exceeded my expectations.</p>
+      </div>
+
+      <!-- Feedback Section for Black Pepper -->
+      <div id="blackPepperFeedback" class="feedback-container" style="display: none;">
+        <div class="rating checked">★★★★☆ (4.0/5.0)</div>
+        <p>User: Jane</p>
+        <p>I love Black Pepper. It has a wonderful scent!</p>
+      </div>
+
+      <!-- Feedback section for Cedarwood -->
+      <div id="cedarwoodFeedback" class="feedback-container" style="display: none;">
+        <div class="rating checked">★★★☆☆ (3.0/5.0)</div>
+        <p>User: Jane Smith</p>
+        <p>This product is okay, but it could be better. I would recommend it to my friends.</p>
+      </div>
+
+      <!-- Feedback Section for Bergamot -->
+      <div id="bergamotFeedback" class="feedback-container" style="display: none;">
+        <div class="rating checked">★★★★☆ (4.0/5.0)</div>
+        <p>User: Danielle</p>
+        <p>I love Bergamot. It has a wonderful scent!</p>
+      </div>
+
+      <!-- Feedback Section for Melaleuca Alternifolia -->
+      <div id="melaleucaAlternifoliaFeedback" class="feedback-container" style="display: none;">
+        <div class="rating checked">★★★★☆ (4.0/5.0)</div>
+        <p>User: Michelle</p>
+        <p>I love Melaleuca Alternifolia. It has a wonderful scent!</p>
+      </div>
+      <!-- Add similar feedback-container divs for other products -->
+
+      <button class="leave-feedback-btn" onclick="showFeedbackForm()">Leave Feedback</button>
+      <form id="feedback-form" style="display: none;" onsubmit="submitFeedback(event)">
+        <div class="rating" onclick="rateStar(1)">★</div>
+        <div class="rating" onclick="rateStar(2)">★★</div>
+        <div class="rating" onclick="rateStar(3)">★★★</div>
+        <div class="rating" onclick="rateStar(4)">★★★★</div>
+        <div class="rating" onclick="rateStar(5)">★★★★★</div>
+        <textarea id="feedback-text" placeholder="Write your feedback here..." required>
+            </textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+
+      <div class="collapsibleFeedback" id="collapsible-feedback" style="display: none;">
+        <div class="collapsible" onclick="toggleCollapsible('collapsible-content')"> Comments (Click to Expand/Collapse)
+        </div>
+        <div class="content" id="collapsible-content">
+          <!-- New comments will be added here dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p>2023 &copy; Designed By ELVINSON, FAHEEM, AMIRAH</p>
+    </div>
+  </footer>
+
+  <script>
+
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    let userRating = 0;
+    let feedbackData = {
+      australianEricifolia: [],
+      blueTansy: [],
+      blackPepper: [],
+      cedarwood: [],
+      bergamot: [],
+      melaleucaAlternifolia: []
+    }; // Object to store feedback for each product
+
+    function rateStar(stars) {
+      userRating = stars;
+      updateRatingDisplay();
+    }
+
+    function updateRatingDisplay() {
+      const ratingDisplay = document.querySelector('.rating');
+      ratingDisplay.innerHTML = '★'.repeat(userRating) + '☆'.repeat(5 - userRating) + ` (${userRating}.0/5.0)`;
+    }
+
+    function showFeedbackForm() {
+      document.getElementById('feedback-form').style.display = 'block';
+    }
+
+    function submitFeedback(event) {
+      event.preventDefault();
+      const feedbackText = document.getElementById('feedback-text').value;
+      const newFeedback = `<div class="rating checked">${'★'.repeat(userRating)}☆${'☆'.repeat(5 - userRating)} (${userRating}.0/5.0)</div><p>User: Anonymous</p><p>${feedbackText}</p>`;
+
+      var dropdown = document.getElementById("productDropdown");
+      var selectedProduct = dropdown.options[dropdown.selectedIndex].value;
+
+      feedbackData[selectedProduct].push(newFeedback); // Save feedback for the selected product
+
+      const collapsibleContent = document.getElementById('collapsible-content');
+      collapsibleContent.innerHTML = feedbackData[selectedProduct].join(''); // Display feedback for the selected product
+      document.getElementById('feedback-form').style.display = 'none';
+      document.getElementById('feedback-text').value = '';
+      showCollapsibleFeedback(); // Show collapsible section after submitting user feedback
+    }
+
+    function showCollapsibleFeedback() {
+      const collapsibleFeedback = document.getElementById('collapsible-feedback');
+      collapsibleFeedback.style.display = 'block';
+      toggleCollapsible('collapsible-content'); // Expand collapsible section after submitting user feedback
+    }
+
+    function toggleCollapsible(collapsibleId) {
+      const collapsibleContent = document.getElementById(collapsibleId);
+      if (collapsibleContent.style.display === 'block') {
+        collapsibleContent.style.display = 'none';
+      } else {
+        collapsibleContent.style.display = 'block';
+      }
+    }
+
+    function changeProduct() {
+      var dropdown = document.getElementById("productDropdown");
+      var selectedProduct = dropdown.options[dropdown.selectedIndex].value;
+
+      // Hide all product info initially
+      document.getElementById('australianEricifoliaInfo').style.display = 'none';
+      document.getElementById('blueTansyInfo').style.display = 'none';
+      document.getElementById('blackPepperInfo').style.display = 'none';
+      document.getElementById('cedarwoodInfo').style.display = 'none';
+      document.getElementById('bergamotInfo').style.display = 'none';
+      document.getElementById('melaleucaAlternifoliaInfo').style.display = 'none';
+
+      if (selectedProduct === "australianEricifolia") {
+        document.getElementById('myImg').src = 'Australian Ericifolia.jpg';
+        document.getElementById('australianEricifoliaInfo').style.display = 'block';
+      } else if (selectedProduct === "blueTansy") {
+        document.getElementById('myImg').src = 'blue tansy.jpg';
+        document.getElementById('blueTansyInfo').style.display = 'block';
+      } else if (selectedProduct === "blackPepper") {
+        document.getElementById('myImg').src = 'black pepper.jpg';
+        document.getElementById('blackPepperInfo').style.display = 'block';
+      } else if (selectedProduct === "cedarwood") {
+        document.getElementById('myImg').src = 'cedarwood.jpg';
+        document.getElementById('cedarwoodInfo').style.display = 'block';
+      } else if (selectedProduct === "bergamot") {
+        document.getElementById('myImg').src = 'Bergamot.jpg';
+        document.getElementById('bergamotInfo').style.display = 'block';
+      } else if (selectedProduct === "melaleucaAlternifolia") {
+        document.getElementById('myImg').src = 'Melaleuca Alternifolia.jpg';
+        document.getElementById('melaleucaAlternifoliaInfo').style.display = 'block';
+      }
+
+      // Display feedback for the selected product under collapsible
+      const collapsibleContent = document.getElementById('collapsible-content');
+      collapsibleContent.innerHTML = feedbackData[selectedProduct].join('');
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: beige;
+        }
+
+        header {
+            background-color: #626C66;
+            color: white;
+            padding: 20px;
+            text-align: left;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .brand-name {
+            color: white;
+        }
+
+        h1 {
+            display: inline-block;
+            margin: 0;
+        }
+
+        form {
+            display: inline-block;
+            margin-left: auto; /* Align the form to the right */
+            text-align: center;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        form button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .product-image {
+            width: 50%;
+            height: auto;
+            border: 1px solid #ccc;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            text-align: left;
+            width: 50%;
+        }
+
+        .product-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .price-and-rating {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+        }
+
+        .checkout-container {
+            text-align: center;
+        }
+
+        .checkout {
+            display: inline-block;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #626C66;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .brand-name {
+            color: white; /* Set the color to white */
+        }
+
+        h1 {
+            display: inline-block; /* Display Shop and search on the same line */
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: calc(25% - 20px);
+}
+
+.product-name {
+    font-size: 18px;
+    margin-top: 10px; /* Add margin to separate product name from image */
+}
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="homepage.html">
+            <h1><span class="brand-name">Essential</span></h1>
+        </a>
+    </header>
+
+    <h1>Shop
+                <form id="searchForm" onsubmit="searchProducts(); return false;">
+                    <input type="text" id="searchInput" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </h1>
+
+    <main>
+        <div class="product">
+            <a href="Australian Ericifolia.html"> <!-- Replace "product1.html" with the actual link for the first product -->
+                <img src="Australian Ericifolia.jpg" alt="Australia" width="200" height="200">
+            </a>
+            <p>Australia</p>
+        </div>
+        <div class="product">
+            <a href="blue tansy.html">
+                <img src="blue tansy.jpg" alt="Lemongrass" width="200" height="200">
+            </a>
+            <p>Blue Tansy</p>
+        </div>
+        <div class="product">
+            <a href="black pepper.html">
+                <img src="black pepper.jpg" alt="Australia" width="200" height="200">
+            </a>
+            <p>Black pepper</p>
+        </div>
+        <div class="product">
+            <a href="cedarwood.html">
+                <img src="cedarwood.jpg" alt="Australia" width="200" height="200">
+            </a>
+            <p>Cedarwood</p>
+        </div>
+        <div class="product">
+            <a href="bergamot.html"> <!-- Replace "product3.html" with the actual link for the third product -->
+                <img src="Bergamot.jpg" alt="Australia" width="200" height="200">
+            </a>
+            <p>Bergamot</p>
+        </div>
+        <div class="product">
+            <a href="Melaleuca Alternifolia.html"> <!-- Replace "product3.html" with the actual link for the third product -->
+                <img src="Melaleuca Alternifolia.jpg" alt="Australia" width="200" height="200">
+            </a>
+            <p>Melaleuca Alternifolia</p>
+        </div>
+    </main>
+
+    <footer>
+        2023 &copy; Designed By ELVINSON, FAHEEM, AMIRAH
+    </footer>
+    <script>
+        function searchProducts() {
+            // Get the search input value
+            var searchQuery = document.getElementById("searchInput").value.toLowerCase();
+
+            // Get all product names
+            var productNames = document.querySelectorAll(".product-name");
+
+            // Loop through product names and hide/show based on the search query
+            productNames.forEach(function (productName) {
+                var product = productName.parentElement;
+                if (productName.innerText.toLowerCase().includes(searchQuery)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
